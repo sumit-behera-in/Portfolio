@@ -1,0 +1,94 @@
+---
+interface Props {
+  skills: string[];
+}
+
+const { skills } = Astro.props;
+
+const skillCategories = {
+  'Frontend': ['JavaScript', 'TypeScript', 'React', 'Vue', 'Angular', 'CSS', 'HTML', 'Tailwind', 'Astro', 'Next.js'],
+  'Backend': ['Node.js', 'Python', 'Go', 'Java', 'Ruby', 'PHP', 'C#', 'Rust', 'Kotlin'],
+  'Database': ['PostgreSQL', 'MongoDB', 'MySQL', 'SQLite', 'Redis', 'Firebase'],
+  'DevOps': ['Docker', 'Kubernetes', 'AWS', 'GitHub Actions', 'CI/CD', 'Linux', 'Nginx'],
+  'Tools': ['Git', 'VSCode', 'npm', 'GitHub', 'Figma', 'Postman']
+};
+
+const categorizeSkills = (skillList: string[]) => {
+  const categorized: Record<string, string[]> = {};
+  const used = new Set<string>();
+
+  for (const [category, categorySkills] of Object.entries(skillCategories)) {
+    const matched = skillList.filter(skill => 
+      categorySkills.some(cs => cs.toLowerCase() === skill.toLowerCase())
+    );
+    if (matched.length > 0) {
+      categorized[category] = matched;
+      matched.forEach(s => used.add(s));
+    }
+  }
+
+  // Add uncategorized skills
+  const uncategorized = skillList.filter(s => !used.has(s));
+  if (uncategorized.length > 0) {
+    categorized['Other'] = uncategorized;
+  }
+
+  return categorized;
+};
+
+const categorizedSkills = categorizeSkills(skills);
+---
+
+<section class="py-20 bg-slate-50 dark:bg-slate-800">
+  <div class="container-max">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        <span class="gradient-text">Skills & Technologies</span>
+      </h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400">
+        A diverse toolkit built through practical experience and continuous learning
+      </p>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {Object.entries(categorizedSkills).map(([category, categorySkills]) => (
+        <div class="card p-8">
+          <h3 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+            {category}
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {categorySkills.map((skill) => (
+              <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm font-medium hover:shadow-lg transition-shadow">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats -->
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="card p-8 text-center">
+        <div class="text-4xl font-bold text-blue-500 mb-2">
+          {skills.length}+
+        </div>
+        <p class="text-slate-600 dark:text-slate-400">Technologies Learned</p>
+      </div>
+      <div class="card p-8 text-center">
+        <div class="text-4xl font-bold text-blue-500 mb-2">
+          {Object.keys(categorizedSkills).length}
+        </div>
+        <p class="text-slate-600 dark:text-slate-400">Skill Categories</p>
+      </div>
+      <div class="card p-8 text-center">
+        <div class="text-4xl font-bold text-blue-500 mb-2">
+          ∞
+        </div>
+        <p class="text-slate-600 dark:text-slate-400">Always Learning</p>
+      </div>
+    </div>
+  </div>
+</section>

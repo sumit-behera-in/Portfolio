@@ -1,0 +1,56 @@
+{
+  "owned": [
+    {
+      "name": "awesome-project",
+      "owner": "your-username",
+      "description": "An amazing project built with modern technologies",
+      "url": "https://github.com/your-username/awesome-project",
+      "stars": 150,
+      "forks": 20,
+      "language": "JavaScript",
+      "topics": ["react", "typescript", "nodejs"],
+      "featured": true,
+      "demo": "https://demo.example.com",
+      "live": "https://live.example.com",
+      "image": "https://opengraph.githubassets.com/1/your-username/awesome-project",
+      "updatedAt": "2024-01-01T00:00:00Z",
+      "isOwned": true
+    },
+    {
+      "name": "cool-library",
+      "owner": "your-username",
+      "description": "A reusable utility library for common tasks",
+      "url": "https://github.com/your-username/cool-library",
+      "stars": 89,
+      "forks": 12,
+      "language": "TypeScript",
+      "topics": ["utility", "library", "npm"],
+      "featured": true,
+      "demo": null,
+      "live": null,
+      "image": "https://opengraph.githubassets.com/1/your-username/cool-library",
+      "updatedAt": "2024-01-01T00:00:00Z",
+      "isOwned": true
+    }
+  ],
+  "featured": [
+    {
+      "name": "awesome-project",
+      "owner": "your-username",
+      "description": "An amazing project built with modern technologies",
+      "url": "https://github.com/your-username/awesome-project",
+      "stars": 150,
+      "forks": 20,
+      "language": "JavaScript",
+      "topics": ["react", "typescript", "nodejs"],
+      "featured": true,
+      "demo": "https://demo.example.com",
+      "live": "https://live.example.com",
+      "image": "https://opengraph.githubassets.com/1/your-username/awesome-project",
+      "updatedAt": "2024-01-01T00:00:00Z",
+      "isOwned": true
+    }
+  ],
+  "count": 2,
+  "lastUpdated": "2024-01-01T00:00:00Z"
+}

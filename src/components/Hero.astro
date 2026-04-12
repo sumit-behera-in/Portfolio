@@ -1,0 +1,92 @@
+---
+interface Props {
+  profile: any;
+}
+
+const { profile } = Astro.props;
+
+const socialLinks = [
+  { icon: 'Github', url: profile.githubUrl, label: 'GitHub' },
+  { icon: 'Linkedin', url: profile.linkedin, label: 'LinkedIn' },
+  { icon: 'Twitter', url: profile.twitter, label: 'Twitter' },
+  { icon: 'Mail', url: `mailto:${profile.email}`, label: 'Email' }
+].filter(link => link.url);
+---
+
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800">
+  <div class="container-max py-20">
+    <div class="flex flex-col items-center text-center space-y-8">
+      <!-- Avatar -->
+      <div class="relative">
+        <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-blue-500 shadow-lg">
+          <img
+            src={profile.avatar}
+            alt={profile.name}
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="absolute -bottom-2 -right-2 bg-blue-500 text-white rounded-full p-2">
+          <span class="text-sm font-semibold">👨‍💻</span>
+        </div>
+      </div>
+
+      <!-- Name & Title -->
+      <div class="space-y-2">
+        <h1 class="text-5xl md:text-6xl font-bold">
+          <span class="gradient-text">{profile.name}</span>
+        </h1>
+        <p class="text-2xl md:text-3xl text-blue-600 dark:text-blue-400 font-semibold">
+          {profile.title}
+        </p>
+      </div>
+
+      <!-- Bio -->
+      <p class="max-w-2xl text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        {profile.bio}
+      </p>
+
+      <!-- Stats -->
+      <div class="flex flex-wrap justify-center gap-8 py-6">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-500">{profile.stats?.totalProjects || 0}</div>
+          <div class="text-sm text-slate-600 dark:text-slate-400">Projects</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-500">{profile.followers}</div>
+          <div class="text-sm text-slate-600 dark:text-slate-400">Followers</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-500">{profile.stats?.totalStars || 0}</div>
+          <div class="text-sm text-slate-600 dark:text-slate-400">Total Stars</div>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="flex gap-4 flex-wrap justify-center pt-6">
+        {profile.email && (
+          <a
+            href={`mailto:${profile.email}`}
+            class="btn-primary"
+          >
+            📧 Get in Touch
+          </a>
+        )}
+        <a
+          href={profile.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-secondary"
+        >
+          🔗 View on GitHub
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="pt-12 animate-bounce">
+        <svg class="w-6 h-6 mx-auto text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

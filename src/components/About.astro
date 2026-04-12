@@ -1,0 +1,83 @@
+---
+interface Props {
+  profile: any;
+}
+
+const { profile } = Astro.props;
+---
+
+<section class="py-20 bg-white dark:bg-slate-900">
+  <div class="container-max">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Image -->
+      <div class="relative">
+        <div class="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src={profile.avatar}
+            alt={profile.name}
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-transparent"></div>
+        </div>
+        <!-- Decorative elements -->
+        <div class="absolute -bottom-8 -right-8 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -top-8 -left-8 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <!-- Right: Content -->
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-4">
+            <span class="gradient-text">About Me</span>
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            {profile.bio}
+          </p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="space-y-4">
+          {profile.location && (
+            <div class="flex items-start gap-4">
+              <div class="text-2xl">📍</div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Location</h4>
+                <p class="text-slate-600 dark:text-slate-400">{profile.location}</p>
+              </div>
+            </div>
+          )}
+          
+          {profile.company && (
+            <div class="flex items-start gap-4">
+              <div class="text-2xl">💼</div>
+              <div>
+                <h4 class="font-semibold text-slate-900 dark:text-white">Currently</h4>
+                <p class="text-slate-600 dark:text-slate-400">{profile.company}</p>
+              </div>
+            </div>
+          )}
+          
+          <div class="flex items-start gap-4">
+            <div class="text-2xl">🎯</div>
+            <div>
+              <h4 class="font-semibold text-slate-900 dark:text-white">Passion</h4>
+              <p class="text-slate-600 dark:text-slate-400">
+                Building elegant solutions to complex problems and contributing to open source
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex gap-4 pt-6">
+          <a href="#contact" class="btn-primary">
+            Let's Connect
+          </a>
+          <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            View GitHub Profile
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

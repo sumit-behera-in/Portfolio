@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import { loadProfileData, loadReposData, getMockProfileData, getMockReposData } from '../utils/getData';
+
+// Load data from JSON files or use mock data
+let profile = loadProfileData();
+let reposData = loadReposData();
+
+// Fallback to mock data if files don't exist yet
+if (!profile) {
+  profile = getMockProfileData();
+}
+
+if (!reposData || reposData.owned.length === 0) {
+  reposData = getMockReposData();
+}
+
+const allProjects = [...(reposData.owned || []), ...(reposData.featured || [])];
+const uniqueProjects = Array.from(new Map(allProjects.map(p => [p.name, p])).values());
+---
+
+<Layout title={`${profile.name} - ${profile.title}`} description={profile.bio}>
+  <Hero profile={profile} />
+  <About profile={profile} />
+  <Projects projects={uniqueProjects} title="Featured Projects" />
+  <Skills skills={profile.skills || []} />
+  <Contact profile={profile} />
+  <Footer profile={profile} />
+</Layout>
