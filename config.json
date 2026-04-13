@@ -1,7 +1,6 @@
 {
   "username": "sumit-behera-in",
-  "version": "1.0.0",
-  
+  "version": "1.0.1",
   "override": {
     "title": "Full Stack Developer | Open Source Enthusiast",
     "linkedin": "https://www.linkedin.com/in/sumit-behera/"
@@ -14,8 +13,14 @@
       "description": "Custom description override (optional)"
     }
   },
-  "hiddenRepos": ["private-repo", "archived-project"],
-  "featuredRepos": ["awesome-project", "important-lib"],
+  "hiddenRepos": [
+    "private-repo",
+    "archived-project"
+  ],
+  "featuredRepos": [
+    "awesome-project",
+    "important-lib"
+  ],
   "social": {
     "github": "sumit-behera-in",
     "linkedin": "https://www.linkedin.com/in/sumit-behera/",
