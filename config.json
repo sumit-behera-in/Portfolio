@@ -3,7 +3,7 @@
   
   "override": {
     "title": "Full Stack Developer | Open Source Enthusiast",
-    "linkedin": "https://linkedin.com/in/yourprofile"
+    "linkedin": "https://www.linkedin.com/in/sumit-behera/"
   },
   "projects": {
     "example-repo": {
@@ -13,16 +13,14 @@
       "description": "Custom description override (optional)"
     }
   },
-  "skills": {
-    "featured": ["JavaScript", "React", "Node.js", "TypeScript", "Python"],
-    "hidden": []
-  },
   "hiddenRepos": ["private-repo", "archived-project"],
   "featuredRepos": ["awesome-project", "important-lib"],
   "social": {
     "github": "sumit-behera-in",
-    "linkedin": "your-profile",
-    "twitter": "your-handle",
-    "email": "your.email@example.com"
+    "linkedin": "https://www.linkedin.com/in/sumit-behera/",
+    "email": "sumit.behera@myyahoo.com",
+    "leetcode": "https://leetcode.com/u/sumitbehera/",
+    "GeeksforGeeks": "https://www.geeksforgeeks.org/profile/sumitbehera1508",
+    "hackerrank": "https://www.hackerrank.com/profile/sumitbehera1508"
   }
 }

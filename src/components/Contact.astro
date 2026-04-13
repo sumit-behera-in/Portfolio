@@ -11,7 +11,7 @@ const socialLinks = [
   {
     name: 'Email',
     icon: Mail,
-    url: `mailto:${profile.email}`,
+    url: profile.email ? `mailto:${profile.email}` : '',
     display: profile.email,
     active: !!profile.email
   },
@@ -19,14 +19,14 @@ const socialLinks = [
     name: 'GitHub',
     icon: Github,
     url: profile.githubUrl,
-    display: `@${profile.username}`,
-    active: true
+    display: profile.username ? `@${profile.username}` : 'GitHub',
+    active: !!profile.githubUrl
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
     url: profile.linkedin,
-    display: 'LinkedIn Profile',
+    display: profile.linkedin ? 'LinkedIn Profile' : 'LinkedIn',
     active: !!profile.linkedin
   },
   {
@@ -43,15 +43,15 @@ const socialLinks = [
   <div class="container-max">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">
-        Let's Work Together
+        Contact
       </h2>
       <p class="text-lg text-blue-100">
-        Have a project in mind? Let's connect and create something amazing
+        Reach out via the links below.
       </p>
     </div>
 
     <!-- Contact Options -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {socialLinks
         .filter(link => link.active)
         .map((link) => (
@@ -68,32 +68,6 @@ const socialLinks = [
           <p class="text-blue-100 text-sm truncate">{link.display}</p>
         </a>
       ))}
-    </div>
-
-    <!-- Quick Message -->
-    <div class="max-w-2xl mx-auto text-center bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-8">
-      <h3 class="text-2xl font-bold text-white mb-3">
-        Ready to start your next project?
-      </h3>
-      <p class="text-blue-100 mb-6">
-        I'm always interested in hearing about new projects and opportunities.
-      </p>
-      {profile.email && (
-        <a href={`mailto:${profile.email}`} class="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-          Send me an Email
-        </a>
-      )}
-    </div>
-
-    <!-- Footer Note -->
-    <div class="mt-12 text-center text-blue-100 text-sm">
-      <p>
-        Last updated: {new Date().toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        })}
-      </p>
     </div>
   </div>
 </section>

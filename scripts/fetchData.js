@@ -58,6 +58,31 @@ async function fetchJSON(url) {
   }
 }
 
+async function fetchLatestRelease(owner, repo) {
+  const url = `${GITHUB_API}/repos/${owner}/${repo}/releases/latest`;
+
+  try {
+    const response = await fetch(url, { headers });
+    if (!response.ok) {
+      if (response.status === 404 || response.status === 403) {
+        return null;
+      }
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const release = await response.json();
+    return {
+      name: release.name || '',
+      tagName: release.tag_name || '',
+      publishedAt: release.published_at || '',
+      url: release.html_url || ''
+    };
+  } catch (error) {
+    console.error(`Error fetching release for ${owner}/${repo}:`, error.message);
+    return null;
+  }
+}
+
 async function fetchUserProfile(username) {
   console.log(`📥 Fetching profile for @${username}...`);
   const profile = await fetchJSON(`${GITHUB_API}/users/${username}`);
@@ -128,12 +153,12 @@ async function fetchStarredRepos(username) {
   }
 
   // Process and normalize repos
-  const processedRepos = repos
+  const processedRepos = await Promise.all(repos
     .filter(repo => !config.hiddenRepos?.includes(repo.name))
-    .map(repo => {
+    .map(async (repo) => {
       const projectConfig = config.projects?.[repo.name] || {};
-      const languages = repo.language ? [repo.language] : [];
-      
+      const latestRelease = await fetchLatestRelease(repo.owner.login, repo.name);
+
       return {
         name: repo.name,
         owner: repo.owner.login,
@@ -147,16 +172,18 @@ async function fetchStarredRepos(username) {
         demo: projectConfig.demo || null,
         live: projectConfig.live || null,
         image: `https://opengraph.githubassets.com/1/${repo.full_name}`,
-        updatedAt: repo.updated_at
+        updatedAt: repo.updated_at,
+        createdAt: repo.created_at,
+        latestRelease,
       };
-    })
-    .sort((a, b) => {
+    }))
+    .then((list) => list.sort((a, b) => {
       // Sort featured repos first, then by stars
       if (a.featured !== b.featured) {
         return b.featured ? 1 : -1;
       }
       return b.stars - a.stars;
-    });
+    }));
 
   return processedRepos;
 }
@@ -181,11 +208,12 @@ async function fetchUserRepos(username) {
   }
 
   // Process repos
-  const processedRepos = repos
+  const processedRepos = await Promise.all(repos
     .filter(repo => !repo.archived && !config.hiddenRepos?.includes(repo.name))
-    .map(repo => {
+    .map(async (repo) => {
       const projectConfig = config.projects?.[repo.name] || {};
-      
+      const latestRelease = await fetchLatestRelease(repo.owner.login, repo.name);
+
       return {
         name: repo.name,
         owner: repo.owner.login,
@@ -200,15 +228,17 @@ async function fetchUserRepos(username) {
         live: projectConfig.live || null,
         image: `https://opengraph.githubassets.com/1/${repo.full_name}`,
         updatedAt: repo.updated_at,
+        createdAt: repo.created_at,
+        latestRelease,
         isOwned: true
       };
-    })
-    .sort((a, b) => {
+    }))
+    .then((list) => list.sort((a, b) => {
       if (a.featured !== b.featured) {
         return b.featured ? 1 : -1;
       }
       return b.stars - a.stars;
-    });
+    }));
 
   return processedRepos;
 }
@@ -253,10 +283,9 @@ async function main() {
     }
 
     const userRepos = await fetchUserRepos(username);
-    const starredRepos = await fetchStarredRepos(username);
 
     // Extract skills
-    const skills = extractSkills([...userRepos, ...starredRepos], profile);
+    const skills = extractSkills(userRepos, profile);
 
     // Generate stats
     const stats = {
@@ -291,18 +320,6 @@ async function main() {
       JSON.stringify(reposData, null, 2)
     );
     console.log(`✅ Saved repos.json`);
-
-    // Save starred.json
-    const starredData = {
-      repos: starredRepos.slice(0, 50), // Top 50 starred
-      count: starredRepos.length,
-      lastUpdated: new Date().toISOString()
-    };
-    fs.writeFileSync(
-      path.join(DATA_DIR, 'starred.json'),
-      JSON.stringify(starredData, null, 2)
-    );
-    console.log(`✅ Saved starred.json`);
 
     console.log(`\n✨ Portfolio data updated successfully!\n`);
     console.log(`📊 Summary:`);

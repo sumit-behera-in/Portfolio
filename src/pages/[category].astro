@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import {
+  loadProfileData,
+  loadReposData,
+  loadProjectMapping,
+  getReposForCategory,
+  formatCategoryLabel,
+  getMockProfileData,
+  getMockReposData,
+  getLastUpdated
+} from '../utils/getData';
+
+export async function getStaticPaths() {
+  const mapping = loadProjectMapping();
+  return Object.keys(mapping).map((category) => ({ params: { category } }));
+}
+
+const { category } = Astro.params;
+
+let profile = loadProfileData() || getMockProfileData();
+let reposData = loadReposData();
+
+if (!reposData || reposData.owned.length === 0) {
+  reposData = getMockReposData();
+}
+
+const projectMapping = loadProjectMapping();
+const lastUpdated = getLastUpdated();
+const categoryLabel = formatCategoryLabel(category);
+const categoryExists = Boolean(projectMapping[category]);
+const categoryProjects = categoryExists
+  ? getReposForCategory(reposData.owned || [], category, projectMapping)
+  : [];
+
+const sortedProjects = categoryProjects
+  .slice()
+  .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+---
+
+<Layout title={`${categoryExists ? categoryLabel : 'Category'} - ${profile.name}`} description={categoryExists ? `Projects in ${categoryLabel}` : 'Category not found'}>
+  <section class="pt-32 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800">
+    <div class="container-max">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4">
+        <span class="gradient-text">{categoryExists ? categoryLabel : 'Category not found'}</span>
+      </h1>
+      <p class="text-xl text-slate-600 dark:text-slate-400">
+        {categoryExists
+          ? `Projects assigned to ${categoryLabel}`
+          : 'This category is not listed in list_mapping.json.'}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white dark:bg-slate-900">
+    <div class="container-max">
+      {categoryExists ? (
+        sortedProjects.length > 0 ? (
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sortedProjects.map((project) => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        ) : (
+          <div class="text-center py-12">
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+              No owned repositories matched the {categoryLabel} category. Update list_mapping.json with your repo names.
+            </p>
+          </div>
+        )
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-lg text-slate-600 dark:text-slate-400">
+            This route is reserved for mapped project categories. Add a matching key to list_mapping.json to create the page.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <Footer profile={profile} lastUpdated={lastUpdated} />
+</Layout>

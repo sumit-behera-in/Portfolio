@@ -1,0 +1,60 @@
+{
+  "languages": [
+    { "name": "Go", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { "name": "Java", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+    { "name": "Kotlin", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" },
+    { "name": "Python", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { "name": "C", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
+    { "name": "C++", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+    { "name": "Groovy", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/groovy/groovy-original.svg" }
+  ],
+
+  "android": [
+    { "name": "Android", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" },
+    { "name": "Jetpack Compose", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" },
+    { "name": "Gradle", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg" },
+    { "name": "RoomDB", "icon": "https://img.icons8.com/color/96/database.png" },
+    { "name": "RealmDB", "icon": "https://img.icons8.com/color/96/database.png" }
+  ],
+
+  "backend": [
+    { "name": "Gin", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { "name": "Ktor", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" }
+  ],
+
+  "databases": [
+    { "name": "MongoDB", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    { "name": "SQLite", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
+    { "name": "PostgreSQL", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" }
+  ],
+
+  "GoLang Developer": [
+    { "name": "Gin", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { "name": "Go CLI", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { "name": "Cobra", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
+    { "name": "urfave/cli", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" }
+  ],
+
+  "SAP": [
+    { "name": "SAP BTP", "icon": "https://img.icons8.com/color/96/sap.png" },
+    { "name": "SAP Integration Suite", "icon": "https://img.icons8.com/color/96/sap.png" }
+  ],
+
+  "version control": [
+    { "name": "Git", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { "name": "GitHub", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+    { "name": "GitLab", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" }
+  ],
+
+  "ci cd": [
+    { "name": "GitHub Actions", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" }
+  ],
+
+  "tools": [
+    { "name": "Docker", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+    { "name": "VS Code", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+    { "name": "Postman", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
+    { "name": "Unity", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" },
+    { "name": "Terraform", "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" }
+  ]
+}

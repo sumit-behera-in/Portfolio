@@ -25,12 +25,13 @@
     @apply px-6 py-3 bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-600 transition-colors;
   }
   
-  .btn-secondary {
-    @apply px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-slate-100 rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors;
+  .btn-secondary,
+  .btn-uniform {
+    @apply px-6 py-3 bg-slate-900 text-white rounded-lg font-medium hover:bg-slate-800 transition-colors;
   }
   
   .card {
-    @apply bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow;
+    @apply block bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-lg transition-shadow;
   }
   
   .container-max {

@@ -1,18 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
-import { Star, GitFork, ExternalLink, Play } from 'lucide-react';
-import { loadProfileData, loadReposData, getMockProfileData, getMockReposData } from '../utils/getData';
+import ProjectTabs from '../components/ProjectTabs.jsx';
+import { loadProfileData, loadReposData, getMockProfileData, getMockReposData, getLastUpdated } from '../utils/getData';
 
 let profile = loadProfileData() || getMockProfileData();
 let reposData = loadReposData();
+const lastUpdated = getLastUpdated();
 
 if (!reposData || reposData.owned.length === 0) {
   reposData = getMockReposData();
 }
 
-const allProjects = [...(reposData.owned || []), ...(reposData.featured || [])];
-const uniqueProjects = Array.from(new Map(allProjects.map(p => [p.name, p])).values());
+const allProjects = (reposData.owned || [])
+  .slice()
+  .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+const featuredProjects = allProjects.filter((project) => project.featured);
 ---
 
 <Layout title={`Projects - ${profile.name}`} description="All projects and repositories">
@@ -28,129 +31,7 @@ const uniqueProjects = Array.from(new Map(allProjects.map(p => [p.name, p])).val
     </div>
   </section>
 
-  <!-- Projects List -->
-  <section class="py-20 bg-white dark:bg-slate-900">
-    <div class="container-max">
-      <!-- Filter Tabs -->
-      <div class="flex gap-4 mb-12 flex-wrap">
-        <button class="px-6 py-2 rounded-lg font-medium bg-blue-500 text-white hover:bg-blue-600 transition-colors">
-          All ({uniqueProjects.length})
-        </button>
-        <button class="px-6 py-2 rounded-lg font-medium border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-          Featured ({uniqueProjects.filter(p => p.featured).length})
-        </button>
-      </div>
+  <ProjectTabs client:load allProjects={allProjects} featuredProjects={featuredProjects} />
 
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {uniqueProjects.map((project) => (
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="card p-6 hover:shadow-xl transition-all group cursor-pointer flex flex-col"
-          >
-            <!-- Project Image -->
-            {project.image && (
-              <div class="mb-4 rounded-lg overflow-hidden h-48 bg-slate-200 dark:bg-slate-700">
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                  loading="lazy"
-                />
-              </div>
-            )}
-
-            <!-- Language & Status Badges -->
-            <div class="flex gap-2 mb-3 flex-wrap">
-              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200 rounded-full text-sm font-medium">
-                {project.language}
-              </span>
-              {project.featured && (
-                <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 rounded-full text-sm font-medium">
-                  ⭐ Featured
-                </span>
-              )}
-              {project.isOwned && (
-                <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200 rounded-full text-sm font-medium">
-                  👤 Owned
-                </span>
-              )}
-            </div>
-
-            <!-- Title -->
-            <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white group-hover:text-blue-500 transition-colors">
-              {project.name}
-            </h3>
-
-            <!-- Description -->
-            <p class="text-sm text-slate-600 dark:text-slate-400 mb-4 flex-grow">
-              {project.description}
-            </p>
-
-            <!-- Topics -->
-            {project.topics && project.topics.length > 0 && (
-              <div class="flex flex-wrap gap-2 mb-4">
-                {project.topics.map((topic) => (
-                  <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded">
-                    #{topic}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            <!-- Stats & Links -->
-            <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-700 mt-auto">
-              <div class="flex gap-4 text-sm text-slate-600 dark:text-slate-400">
-                <div class="flex items-center gap-1">
-                  <Star class="w-4 h-4" />
-                  <span>{project.stars}</span>
-                </div>
-                <div class="flex items-center gap-1">
-                  <GitFork class="w-4 h-4" />
-                  <span>{project.forks || 0}</span>
-                </div>
-              </div>
-
-              <div class="flex gap-2">
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="p-2 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg transition-colors"
-                    title="Demo"
-                  >
-                    <Play class="w-4 h-4 text-blue-500" />
-                  </a>
-                )}
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="p-2 hover:bg-blue-100 dark:hover:bg-blue-900 rounded-lg transition-colors"
-                    title="Live"
-                  >
-                    <ExternalLink class="w-4 h-4 text-blue-500" />
-                  </a>
-                )}
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      {uniqueProjects.length === 0 && (
-        <div class="text-center py-12">
-          <p class="text-lg text-slate-600 dark:text-slate-400">
-            No projects found. Please update the GitHub data.
-          </p>
-        </div>
-      )}
-    </div>
-  </section>
-
-  <Footer profile={profile} />
+  <Footer profile={profile} lastUpdated={lastUpdated} />
 </Layout>

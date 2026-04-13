@@ -1,0 +1,6 @@
+{
+  "go": ["Gin_Base_File_Server"],
+  "sapbtp": ["SAP-CPI-Trace-Enabler"],
+  "ml": ["Hand_Sign_detection"],
+  "android": ["Chatting_app"]
+}

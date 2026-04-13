@@ -2,34 +2,47 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
-import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-import { loadProfileData, loadReposData, getMockProfileData, getMockReposData } from '../utils/getData';
+import {
+  loadProfileData,
+  loadProjectMapping,
+  formatCategoryLabel,
+  getMockProfileData,
+  getLastUpdated
+} from '../utils/getData';
+import { loadSkillsConfig } from '../lib/getSkills';
 
 // Load data from JSON files or use mock data
 let profile = loadProfileData();
-let reposData = loadReposData();
+const projectMapping = loadProjectMapping();
+const skillsByCategory = loadSkillsConfig();
+const lastUpdated = getLastUpdated();
 
 // Fallback to mock data if files don't exist yet
 if (!profile) {
   profile = getMockProfileData();
 }
 
-if (!reposData || reposData.owned.length === 0) {
-  reposData = getMockReposData();
-}
-
-const allProjects = [...(reposData.owned || []), ...(reposData.featured || [])];
-const uniqueProjects = Array.from(new Map(allProjects.map(p => [p.name, p])).values());
+const categoryButtons = [{ href: '/projects', label: 'View All Projects' }, ...Object.keys(projectMapping).map((key) => ({ href: `/${key}`, label: formatCategoryLabel(key) }))];
 ---
 
 <Layout title={`${profile.name} - ${profile.title}`} description={profile.bio}>
   <Hero profile={profile} />
+
+  <section class="py-10 bg-slate-50 dark:bg-slate-950">
+    <div class="container-max flex flex-wrap gap-4 items-center justify-center">
+      {categoryButtons.map((button) => (
+        <a href={button.href} class="btn-uniform">
+          {button.label}
+        </a>
+      ))}
+    </div>
+  </section>
+
   <About profile={profile} />
-  <Projects projects={uniqueProjects} title="Featured Projects" />
-  <Skills skills={profile.skills || []} />
+  <Skills skillsByCategory={skillsByCategory} />
   <Contact profile={profile} />
-  <Footer profile={profile} />
+  <Footer profile={profile} lastUpdated={lastUpdated} />
 </Layout>
