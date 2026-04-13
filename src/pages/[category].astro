@@ -10,7 +10,8 @@ import {
   formatCategoryLabel,
   getMockProfileData,
   getMockReposData,
-  getLastUpdated
+  getLastUpdated,
+  loadSocialLinks
 } from '../utils/getData';
 
 export async function getStaticPaths() {
@@ -29,6 +30,7 @@ if (!reposData || reposData.owned.length === 0) {
 
 const projectMapping = loadProjectMapping();
 const lastUpdated = getLastUpdated();
+const socialLinks = loadSocialLinks();
 const categoryLabel = formatCategoryLabel(category);
 const categoryExists = Boolean(projectMapping[category]);
 const categoryProjects = categoryExists
@@ -80,5 +82,5 @@ const sortedProjects = categoryProjects
     </div>
   </section>
 
-  <Footer profile={profile} lastUpdated={lastUpdated} />
+  <Footer profile={profile} lastUpdated={lastUpdated} socialLinks={socialLinks} />
 </Layout>

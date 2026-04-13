@@ -10,7 +10,8 @@ import {
   loadProjectMapping,
   formatCategoryLabel,
   getMockProfileData,
-  getLastUpdated
+  getLastUpdated,
+  loadSocialLinks
 } from '../utils/getData';
 import { loadSkillsConfig } from '../lib/getSkills';
 
@@ -19,6 +20,7 @@ let profile = loadProfileData();
 const projectMapping = loadProjectMapping();
 const skillsByCategory = loadSkillsConfig();
 const lastUpdated = getLastUpdated();
+const socialLinks = loadSocialLinks();
 
 // Fallback to mock data if files don't exist yet
 if (!profile) {
@@ -44,5 +46,5 @@ const categoryButtons = [{ href: '/projects', label: 'View All Projects' }, ...O
   <About profile={profile} />
   <Skills skillsByCategory={skillsByCategory} />
   <Contact profile={profile} />
-  <Footer profile={profile} lastUpdated={lastUpdated} />
+  <Footer profile={profile} lastUpdated={lastUpdated} socialLinks={socialLinks} />
 </Layout>

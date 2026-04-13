@@ -22,6 +22,58 @@ function loadConfigData() {
   return {};
 }
 
+export type SocialLink = {
+  platform: string;
+  url: string;
+  label: string;
+};
+
+/**
+ * Loads all social links from config.json and normalizes them
+ * into a uniform array of { platform, url, label }.
+ */
+export function loadSocialLinks(): SocialLink[] {
+  const config = loadConfigData();
+  const social = config.social || {};
+
+  const platformLabels: Record<string, string> = {
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    twitter: 'Twitter',
+    email: 'Email',
+    leetcode: 'LeetCode',
+    geeksforgeeks: 'GeeksforGeeks',
+    hackerrank: 'HackerRank',
+    stackoverflow: 'Stack Overflow',
+    youtube: 'YouTube',
+    instagram: 'Instagram',
+    facebook: 'Facebook',
+    medium: 'Medium',
+    devto: 'Dev.to',
+    hashnode: 'Hashnode',
+    codepen: 'CodePen',
+    dribbble: 'Dribbble',
+    behance: 'Behance',
+  };
+
+  return Object.entries(social).map(([key, value]) => {
+    const platform = key.toLowerCase();
+    let url = String(value);
+
+    // Normalize URL based on platform
+    if (platform === 'github' && !url.startsWith('http')) {
+      url = `https://github.com/${url}`;
+    } else if (platform === 'email') {
+      url = url.startsWith('mailto:') ? url : `mailto:${url}`;
+    }
+
+    // Determine display label
+    const label = platformLabels[platform] || key.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+    return { platform, url, label };
+  });
+}
+
 export function loadProfileData() {
   try {
     const filePath = path.join(dataDir, 'profile.json');

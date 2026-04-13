@@ -1,10 +1,13 @@
 ---
+import type { SocialLink } from '../utils/getData';
+
 interface Props {
   profile: any;
   lastUpdated?: string;
+  socialLinks?: SocialLink[];
 }
 
-const { profile, lastUpdated } = Astro.props;
+const { profile, lastUpdated, socialLinks = [] } = Astro.props;
 const currentYear = new Date().getFullYear();
 
 function formatLastUpdated(timestamp: string) {
@@ -46,22 +49,22 @@ const formattedLastUpdated = lastUpdated ? formatLastUpdated(lastUpdated) : null
         </ul>
       </div>
 
-      <!-- Social -->
+      <!-- Social (dynamic from config.json) -->
       <div>
         <h4 class="font-semibold mb-4">Social</h4>
         <ul class="space-y-2 text-sm text-slate-400">
-          {profile.githubUrl && (
-            <li><a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a></li>
-          )}
-          {profile.linkedin && (
-            <li><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a></li>
-          )}
-          {profile.twitter && (
-            <li><a href={profile.twitter} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Twitter</a></li>
-          )}
-          {profile.email && (
-            <li><a href={`mailto:${profile.email}`} class="hover:text-white transition-colors">Email</a></li>
-          )}
+          {socialLinks.map((link) => (
+            <li>
+              <a
+                href={link.url}
+                target={link.platform === 'email' ? undefined : '_blank'}
+                rel={link.platform === 'email' ? undefined : 'noopener noreferrer'}
+                class="hover:text-white transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 

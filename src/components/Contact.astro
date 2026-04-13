@@ -51,7 +51,7 @@ const socialLinks = [
     </div>
 
     <!-- Contact Options -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="flex flex-wrap justify-center gap-6">
       {socialLinks
         .filter(link => link.active)
         .map((link) => (
@@ -59,7 +59,7 @@ const socialLinks = [
           href={link.url}
           target={link.name !== 'Email' ? '_blank' : undefined}
           rel={link.name !== 'Email' ? 'noopener noreferrer' : undefined}
-          class="group p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg hover:bg-white/20 transition-all"
+          class="group w-full max-w-xs p-6 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg hover:bg-white/20 transition-all"
         >
           <div class="flex items-center gap-3 mb-2">
             <link.icon class="w-6 h-6 text-white group-hover:scale-110 transition-transform" />

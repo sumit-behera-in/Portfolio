@@ -2,11 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import ProjectTabs from '../components/ProjectTabs.jsx';
-import { loadProfileData, loadReposData, getMockProfileData, getMockReposData, getLastUpdated } from '../utils/getData';
+import { loadProfileData, loadReposData, getMockProfileData, getMockReposData, getLastUpdated, loadSocialLinks } from '../utils/getData';
 
 let profile = loadProfileData() || getMockProfileData();
 let reposData = loadReposData();
 const lastUpdated = getLastUpdated();
+const socialLinks = loadSocialLinks();
 
 if (!reposData || reposData.owned.length === 0) {
   reposData = getMockReposData();
@@ -33,5 +34,5 @@ const featuredProjects = allProjects.filter((project) => project.featured);
 
   <ProjectTabs client:load allProjects={allProjects} featuredProjects={featuredProjects} />
 
-  <Footer profile={profile} lastUpdated={lastUpdated} />
+  <Footer profile={profile} lastUpdated={lastUpdated} socialLinks={socialLinks} />
 </Layout>
