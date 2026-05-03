@@ -9,34 +9,39 @@
   "company": "",
   "followers": 7,
   "following": 5,
-  "publicRepos": 60,
+  "publicRepos": 59,
   "twitterHandle": "",
   "githubUrl": "https://github.com/sumit-behera-in",
   "title": "Full Stack Developer | Open Source Enthusiast",
   "linkedin": "https://www.linkedin.com/in/sumit-behera/",
   "twitter": "",
   "createdAt": "2022-02-26T20:12:48Z",
-  "updatedAt": "2026-04-26T02:49:47.574Z",
+  "updatedAt": "2026-05-03T03:21:36.884Z",
   "stats": {
-    "totalProjects": 60,
-    "totalStars": 16,
+    "totalProjects": 59,
+    "totalStars": 17,
     "followers": 7,
     "languages": [
+      "Astro",
       "JavaScript",
       "Go",
       "Makefile",
       "Kotlin",
       "Jupyter Notebook",
       "C#",
-      "Astro",
       "C++",
       "TypeScript",
       "Python",
       "Java"
     ],
-    "lastUpdated": "2026-04-26T02:49:49.152Z"
+    "lastUpdated": "2026-05-03T03:21:37.861Z"
   },
   "skills": [
+    "Astro",
+    "cicd",
+    "gitactions-workflow",
+    "githubactions",
+    "portfolio",
     "JavaScript",
     "Go",
     "golang",
@@ -51,11 +56,6 @@
     "nas",
     "storage",
     "Kotlin",
-    "Jupyter Notebook",
-    "C#",
-    "config",
-    "github-config",
-    "Astro",
-    "C++"
+    "Jupyter Notebook"
   ]
 }
