@@ -9,16 +9,16 @@
   "company": "",
   "followers": 7,
   "following": 7,
-  "publicRepos": 60,
+  "publicRepos": 62,
   "twitterHandle": "",
   "githubUrl": "https://github.com/sumit-behera-in",
   "title": "Full Stack Developer | Open Source Enthusiast",
   "linkedin": "https://www.linkedin.com/in/sumit-behera/",
   "twitter": "",
   "createdAt": "2022-02-26T20:12:48Z",
-  "updatedAt": "2026-08-02T02:49:15.793Z",
+  "updatedAt": "2026-08-09T01:45:45.067Z",
   "stats": {
-    "totalProjects": 60,
+    "totalProjects": 62,
     "totalStars": 17,
     "followers": 7,
     "languages": [
@@ -34,7 +34,7 @@
       "Python",
       "Java"
     ],
-    "lastUpdated": "2026-08-02T02:49:16.892Z"
+    "lastUpdated": "2026-08-09T01:45:46.757Z"
   },
   "skills": [
     "Astro",
