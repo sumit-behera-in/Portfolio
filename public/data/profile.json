@@ -9,17 +9,17 @@
   "company": "",
   "followers": 7,
   "following": 7,
-  "publicRepos": 62,
+  "publicRepos": 63,
   "twitterHandle": "",
   "githubUrl": "https://github.com/sumit-behera-in",
   "title": "Full Stack Developer | Open Source Enthusiast",
   "linkedin": "https://www.linkedin.com/in/sumit-behera/",
   "twitter": "",
   "createdAt": "2022-02-26T20:12:48Z",
-  "updatedAt": "2026-08-09T01:45:45.067Z",
+  "updatedAt": "2026-08-16T01:18:57.930Z",
   "stats": {
-    "totalProjects": 62,
-    "totalStars": 17,
+    "totalProjects": 63,
+    "totalStars": 18,
     "followers": 7,
     "languages": [
       "Astro",
@@ -29,14 +29,24 @@
       "Kotlin",
       "Jupyter Notebook",
       "C#",
+      "Groovy",
       "C++",
       "TypeScript",
       "Python",
       "Java"
     ],
-    "lastUpdated": "2026-08-09T01:45:46.757Z"
+    "lastUpdated": "2026-08-16T01:18:59.767Z"
   },
   "skills": [
+    "cpi",
+    "integration-flow",
+    "integration-platform",
+    "integrationflow",
+    "sap",
+    "sap-btp",
+    "sap-cap",
+    "sap-cloud-platform",
+    "sapui5",
     "Astro",
     "cicd",
     "gitactions-workflow",
@@ -47,15 +57,6 @@
     "golang",
     "golang-library",
     "logging",
-    "Makefile",
-    "go",
-    "template",
-    "template-project",
-    "compression",
-    "zip",
-    "nas",
-    "storage",
-    "Kotlin",
-    "Jupyter Notebook"
+    "Makefile"
   ]
 }
