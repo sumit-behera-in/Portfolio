@@ -9,16 +9,16 @@
   "company": "",
   "followers": 7,
   "following": 7,
-  "publicRepos": 63,
+  "publicRepos": 62,
   "twitterHandle": "",
   "githubUrl": "https://github.com/sumit-behera-in",
   "title": "Full Stack Developer | Open Source Enthusiast",
   "linkedin": "https://www.linkedin.com/in/sumit-behera/",
   "twitter": "",
   "createdAt": "2022-02-26T20:12:48Z",
-  "updatedAt": "2026-08-16T01:18:57.930Z",
+  "updatedAt": "2026-08-23T01:20:30.030Z",
   "stats": {
-    "totalProjects": 63,
+    "totalProjects": 62,
     "totalStars": 18,
     "followers": 7,
     "languages": [
@@ -29,13 +29,12 @@
       "Kotlin",
       "Jupyter Notebook",
       "C#",
-      "Groovy",
       "C++",
       "TypeScript",
       "Python",
       "Java"
     ],
-    "lastUpdated": "2026-08-16T01:18:59.767Z"
+    "lastUpdated": "2026-08-23T01:20:31.133Z"
   },
   "skills": [
     "cpi",

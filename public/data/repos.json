@@ -46,7 +46,7 @@
       "demo": null,
       "live": null,
       "image": "https://opengraph.githubassets.com/1/sumit-behera-in/Portfolio",
-      "updatedAt": "2026-08-09T01:45:51Z",
+      "updatedAt": "2026-08-16T01:19:04Z",
       "createdAt": "2026-04-12T16:17:10Z",
       "latestRelease": {
         "name": "Release v1.0.0",
@@ -400,26 +400,8 @@
       "demo": null,
       "live": null,
       "image": "https://opengraph.githubassets.com/1/sumit-behera-in/sumit-behera-in",
-      "updatedAt": "2026-08-16T00:50:00Z",
+      "updatedAt": "2026-08-23T00:51:35Z",
       "createdAt": "2022-02-26T20:15:18Z",
-      "latestRelease": null,
-      "isOwned": true
-    },
-    {
-      "name": "SAP-CPI-Integration-Scenario-Demos",
-      "owner": "sumit-behera-in",
-      "description": "A curated collection of practical SAP Cloud Platform Integration (CPI) demo scenarios, complete with Groovy scripts, mappings, and end-to-end integration flows.",
-      "url": "https://github.com/sumit-behera-in/SAP-CPI-Integration-Scenario-Demos",
-      "stars": 0,
-      "forks": 0,
-      "language": "Groovy",
-      "topics": [],
-      "featured": false,
-      "demo": null,
-      "live": null,
-      "image": "https://opengraph.githubassets.com/1/sumit-behera-in/SAP-CPI-Integration-Scenario-Demos",
-      "updatedAt": "2026-08-13T13:48:58Z",
-      "createdAt": "2026-08-13T10:52:24Z",
       "latestRelease": null,
       "isOwned": true
     },
@@ -1238,6 +1220,6 @@
     }
   ],
   "featured": [],
-  "count": 63,
-  "lastUpdated": "2026-08-16T01:18:59.768Z"
+  "count": 62,
+  "lastUpdated": "2026-08-23T01:20:31.134Z"
 }
