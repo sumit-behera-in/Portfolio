@@ -46,7 +46,7 @@
       "demo": null,
       "live": null,
       "image": "https://opengraph.githubassets.com/1/sumit-behera-in/Portfolio",
-      "updatedAt": "2026-08-16T01:19:04Z",
+      "updatedAt": "2026-08-23T01:20:36Z",
       "createdAt": "2026-04-12T16:17:10Z",
       "latestRelease": {
         "name": "Release v1.0.0",
@@ -400,7 +400,7 @@
       "demo": null,
       "live": null,
       "image": "https://opengraph.githubassets.com/1/sumit-behera-in/sumit-behera-in",
-      "updatedAt": "2026-08-23T00:51:35Z",
+      "updatedAt": "2026-08-30T02:47:16Z",
       "createdAt": "2022-02-26T20:15:18Z",
       "latestRelease": null,
       "isOwned": true
@@ -1221,5 +1221,5 @@
   ],
   "featured": [],
   "count": 62,
-  "lastUpdated": "2026-08-23T01:20:31.134Z"
+  "lastUpdated": "2026-08-30T04:02:00.889Z"
 }
